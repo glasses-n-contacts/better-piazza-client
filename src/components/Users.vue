@@ -12,7 +12,7 @@
           <td width="550">Description</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for="user in users">
+        <tr v-for="user in users" :key="user._id">
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td align="center">
@@ -47,7 +47,7 @@ export default {
       const response = await UsersService.fetchUsers()
       this.users = response.data.users
     },
-    async deleteUser(id) {
+    async deleteUser (id) {
       await UsersService.deleteUser(id)
       this.$router.push({ name: 'Users' })
     }
